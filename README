@@ -1,0 +1,39 @@
+This is the Dockerfile for creating a new image that support utf8mb4. The official mysql image from the docker hub doesn't support utf-8 as a default.
+
+Instruction:
+$ docker build -t mysql-utf8mb4 .
+Sending build context to Docker daemon  3.072kB
+Step 1/2 : FROM mysql:5.7
+ ---> 11615e225c92
+Step 2/2 : COPY charset.cnf /etc/mysql/conf.d/charset.cnf
+ ---> d369696c7ddc
+Successfully built d369696c7ddc
+Successfully tagged mysql-utf8mb4:latest
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+mysql-utf8mb4       latest              d369696c7ddc        7 seconds ago       408MB
+mysql               latest              11615e225c92        3 days ago          408MB
+
+
+
+mysql> status
+--------------
+mysql  Ver 14.14 Distrib 5.7.20, for Linux (x86_64) using  EditLine wrapper
+
+Connection id:		3
+Current database:	
+Current user:		root@localhost
+SSL:			Not in use
+Current pager:		stdout
+Using outfile:		''
+Using delimiter:	;
+Server version:		5.7.20 MySQL Community Server (GPL)
+Protocol version:	10
+Connection:		Localhost via UNIX socket
+Server characterset:	utf8mb4
+Db     characterset:	utf8mb4
+Client characterset:	utf8mb4
+Conn.  characterset:	utf8mb4
+UNIX socket:		/var/run/mysqld/mysqld.sock
+Uptime:			44 sec
+
